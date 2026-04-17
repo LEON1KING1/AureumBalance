@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AureumBalance</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: #0A1128; overflow-x: hidden; }
+        .glass-card { background: rgba(26, 31, 54, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .gold-glow { box-shadow: 0 0 15px rgba(245, 183, 0, 0.2); }
+    </style>
+</head>
+<body class="text-white">
+
+    <div id="app" class="p-4 max-w-md mx-auto">
+        <header class="flex justify-between items-center mb-6">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-[#F5B700] rounded-full flex items-center justify-center shadow-lg gold-glow">
+                    <span class="text-xl">🔱</span>
+                </div>
+                <h1 class="font-bold text-lg tracking-wide">AureumBalance</h1>
+            </div>
+            <button id="ton-connect" class="bg-[#1A1F36] border border-[#F5B700]/40 px-3 py-1.5 rounded-xl text-xs text-[#F5B700] font-semibold">
+                TON Connect
+            </button>
+        </header>
+
+        <div class="glass-card p-6 rounded-[2.5rem] mb-6 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl">🔱</div>
+            <p class="text-gray-400 text-sm mb-1">إجمالي الأصول</p>
+            <h2 class="text-4xl font-bold mb-4 tabular-nums">450,780.00 <span class="text-xs text-gray-500 font-normal">ر.س</span></h2>
+            <div class="flex items-center gap-2">
+                <div class="bg-[#06D6A0]/20 text-[#06D6A0] px-3 py-1 rounded-full text-xs font-bold">
+                    +1.15% ▲
+                </div>
+                <span class="text-gray-500 text-xs">اليوم</span>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <h3 class="text-gray-400 text-xs font-bold uppercase tracking-widest mb-3 px-2">نبض السوق (RSI)</h3>
+            <div class="space-y-3">
+                <div class="glass-card p-4 rounded-2xl flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center">💎</div>
+                        <div>
+                            <p class="font-bold text-sm">TON / USDT</p>
+                            <p class="text-[10px] text-gray-500">مؤشر القوة: 42.5</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-sm text-[#06D6A0]">5.42</p>
+                        <div class="h-1 w-12 bg-gray-700 rounded-full mt-1 overflow-hidden">
+                            <div class="bg-[#F5B700] h-full" style="width: 42.5%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-4 gap-3 mb-8">
+            <button class="flex flex-col items-center gap-2">
+                <div class="w-12 h-12 glass-card rounded-2xl flex items-center justify-center text-xl">➕</div>
+                <span class="text-[10px] text-gray-400 font-bold">مصرف</span>
+            </button>
+            <button class="flex flex-col items-center gap-2">
+                <div class="w-12 h-12 glass-card rounded-2xl flex items-center justify-center text-xl">📈</div>
+                <span class="text-[10px] text-gray-400 font-bold">تداول</span>
+            </button>
+            <button class="flex flex-col items-center gap-2">
+                <div class="w-12 h-12 glass-card rounded-2xl flex items-center justify-center text-xl">🎯</div>
+                <span class="text-[10px] text-gray-400 font-bold">أهداف</span>
+            </button>
+            <button class="flex flex-col items-center gap-2">
+                <div class="w-12 h-12 glass-card rounded-2xl flex items-center justify-center text-xl">⚙️</div>
+                <span class="text-[10px] text-gray-400 font-bold">إعدادات</span>
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // يفتح التطبيق بكامل الشاشة
+        tg.ready();
+
+        // تلوين شريط الحالة في تليجرام
+        tg.setHeaderColor('#0A1128');
+        tg.setBackgroundColor('#0A1128');
+
+        // Main Button في تليجرام
+        tg.MainButton.setText('تأكيد معاملة TON');
+        tg.MainButton.setTextColor('#0A1128');
+        tg.MainButton.setColor('#F5B700');
+        tg.MainButton.show();
+
+        document.getElementById('ton-connect').onclick = () => {
+            tg.showPopup({
+                title: 'AureumBalance',
+                message: 'سيتم ربط محفظة TON الخاصة بك عبر AgeCoin Logic.',
+                buttons: [{type: 'ok', text: 'موافق'}]
+            });
+        };
+    </script>
+</body>
+</html>
